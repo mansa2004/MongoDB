@@ -1,0 +1,273 @@
+show databases
+admin                  40.00 KiB
+config                 72.00 KiB
+local                  96.00 KiB
+orphanage_management  384.00 KiB
+test                    8.00 KiB
+vit                    24.00 KiB
+use vit
+switched to db vit
+show databases
+admin                  40.00 KiB
+config                108.00 KiB
+local                  96.00 KiB
+orphanage_management  384.00 KiB
+test                    8.00 KiB
+vit                    24.00 KiB
+db
+vit
+db.dropDatabase
+[Function: dropDatabase] AsyncFunction {
+  apiVersions: [ 1, Infinity ],
+  returnsPromise: true,
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  topologies: [ 'ReplSet', 'Sharded', 'LoadBalanced', 'Standalone' ],
+  returnType: { type: 'unknown', attributes: {} },
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+db.dropDatabase()
+{ ok: 1, dropped: 'vit' }
+db
+vit
+use vit
+already on db vit
+use monday
+switched to db monday
+db.createCollection("Students")
+{ ok: 1 }
+db
+monday
+show collections
+Students
+db.createCollection("Results")
+{ ok: 1 }
+show collections
+Results
+Students
+db.Results.drop()
+true
+show collections
+Students
+db.Students.insertOne({name:'Shubham V', location:'Samastipur'})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67d9b903726d52f6470e5b75')
+}
+db.Students.insertOne({name:'Shubham Raj Sharma', location:'Bihar'})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67d9b946726d52f6470e5b76')
+}
+db.Students.find()
+{
+  _id: ObjectId('67d9b903726d52f6470e5b75'),
+  name: 'Shubham V',
+  location: 'Samastipur'
+}
+{
+  _id: ObjectId('67d9b946726d52f6470e5b76'),
+  name: 'Shubham Raj Sharma',
+  location: 'Bihar'
+}
+db.Students.deleteOne({name:'Shubham V'})
+{acknowledged: true,
+  insertedId: ObjectId('67d9b903726d52f6470e5b75')
+}
+
+
+
+
+
+
+
+
+
+
+db
+monday
+db.Students.find().pretty()
+{
+  _id: ObjectId('67d9b946726d52f6470e5b76'),
+  name: 'Shubham Raj Sharma',
+  location: 'Bihar'
+}
+-- db.Students.updateOne({name:'Shubham Raj Sharma'}, {$set:{'name':'Shubh'})
+-- SyntaxError: Unexpected token, expected "," (1:73)
+
+-- [0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39mupdateOne({name[33m:[39m[32m'Shubham Raj Sharma'[39m}[33m,[39m {$set[33m:[39m{[32m'name'[39m[33m:[39m[32m'Shubh'[39m})
+--  [90m   |[39m                                                                          [31m[1m^[22m[39m[0m
+-- db.Students.updateOne({'name':'Shubham Raj Sharma'}, {$set:{'name':'Shubh'})
+-- SyntaxError: Unexpected token, expected "," (1:75)
+
+-- [0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39mupdateOne({[32m'name'[39m[33m:[39m[32m'Shubham Raj Sharma'[39m}[33m,[39m {$set[33m:[39m{[32m'name'[39m[33m:[39m[32m'Shubh'[39m})
+--  [90m   |[39m                                                                            [31m[1m^[22m[39m[0m
+-- db.Students.updateOne({'name':'Shubham Raj Sharma'} {$set:{'name':'Shubh'})
+-- SyntaxError: Unexpected token, expected "," (1:52)
+
+-- [0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39mupdateOne({[32m'name'[39m[33m:[39m[32m'Shubham Raj Sharma'[39m} {$set[33m:[39m{[32m'name'[39m[33m:[39m[32m'Shubh'[39m})
+--  [90m   |[39m                                                     [31m[1m^[22m[39m[0m
+-- db.Students.updateOne({'name':'Shubham Raj Sharma'},{$set:{'name':'Shubh'})
+-- SyntaxError: Unexpected token, expected "," (1:74)
+
+-- [0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39mupdateOne({[32m'name'[39m[33m:[39m[32m'Shubham Raj Sharma'[39m}[33m,[39m{$set[33m:[39m{[32m'name'[39m[33m:[39m[32m'Shubh'[39m})
+--  [90m   |[39m                                                                           [31m[1m^[22m[39m[0m
+-- db.Students.updateOne({name:'Shubham Raj Sharma'},{$set:{'name':'Shubh'})
+-- SyntaxError: Unexpected token, expected "," (1:72)
+
+-- [0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39mupdateOne({name[33m:[39m[32m'Shubham Raj Sharma'[39m}[33m,[39m{$set[33m:[39m{[32m'name'[39m[33m:[39m[32m'Shubh'[39m})
+--  [90m   |[39m                                                                         [31m[1m^[22m[39m[0m
+db.Students.updateOne({name:'Shubham Raj Sharma'},{$set:{'name':'Shubh'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Students.find()
+{
+  _id: ObjectId('67d9b946726d52f6470e5b76'),
+  name: 'Shubh',
+  location: 'Bihar'
+}
+db.Students.insertOne({})
+{
+  acknowledged: true,
+  insertedId: ObjectId('67d9c0124528fa06b04ca584')
+}
+db.Students.insertOne({
+-id :1,
+name: "Joy"});
+-- SyntaxError: Unexpected token (2:0)
+
+-- [0m [90m 1 |[39m db[33m.[39m[33mStudents[39m[33m.[39minsertOne({
+-- [31m[1m>[22m[39m[90m 2 |[39m [33m-[39mid [33m:[39m[35m1[39m[33m,[39m
+--  [90m   |[39m [31m[1m^[22m[39m
+--  [90m 3 |[39m name[33m:[39m [32m"Joy"[39m})[33m;[39m[0m
+db.Students.insertOne({
+_id :1,
+name: "Joy"});
+{
+  acknowledged: true,
+  insertedId: 1
+}
+db.Students.find()
+{
+  _id: ObjectId('67d9b946726d52f6470e5b76'),
+  name: 'Shubh',
+  location: 'Bihar'
+}
+{
+  _id: ObjectId('67d9c0124528fa06b04ca584')
+}
+{
+  _id: 1,
+  name: 'Joy'
+}
+db.Students.insertOne({
+_id :null,
+name: "Ujjwal"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67d9c0bd4528fa06b04ca585')
+}
+db.Students.insertOne({
+_id :null,
+name: "Shubham"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('67d9c0c34528fa06b04ca586')
+}
+db.Students.find()
+{
+  _id: ObjectId('67d9b946726d52f6470e5b76'),
+  name: 'Shubh',
+  location: 'Bihar'
+}
+{
+  _id: ObjectId('67d9c0124528fa06b04ca584')
+}
+{
+  _id: 1,
+  name: 'Joy'
+}
+{
+  _id: ObjectId('67d9c0bd4528fa06b04ca585'),
+  name: 'Ujjwal'
+}
+{
+  _id: ObjectId('67d9c0c34528fa06b04ca586'),
+  name: 'Shubham'
+}
+db.Students.insertOne([
+  {title:"NoSQL Distilled",isbn:"0-4696-7030-4"},
+  {title:"NoSQL in 7 Days",isbn: "0-4086-6859-8"},
+  {title:"NoSQL Database",isbn:"0-2504-6932-4"}]);
+{
+  acknowledged: true,
+  insertedId: ObjectId('67d9c1a24528fa06b04ca587')
+}
+db.Students.drop()
+true
+db.Books.insertMany([
+  {title:"NoSQL Distilled",isbn:"0-4696-7030-4"},
+  {title:"NoSQL in 7 Days",isbn: "0-4086-6859-8"},
+  {title:"NoSQL Database",isbn:"0-2504-6932-4"}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67d9c1d44528fa06b04ca588'),
+    '1': ObjectId('67d9c1d44528fa06b04ca589'),
+    '2': ObjectId('67d9c1d44528fa06b04ca58a')
+  }
+}
+db.Books.find()
+{
+  _id: ObjectId('67d9c1d44528fa06b04ca588'),
+  title: 'NoSQL Distilled',
+  isbn: '0-4696-7030-4'
+}
+{
+  _id: ObjectId('67d9c1d44528fa06b04ca589'),
+  title: 'NoSQL in 7 Days',
+  isbn: '0-4086-6859-8'
+}
+{
+  _id: ObjectId('67d9c1d44528fa06b04ca58a'),
+  title: 'NoSQL Database',
+  isbn: '0-2504-6932-4'
+}
+db.Books.drop()
+true
+db.Books.insertOne([
+  {title:"NoSQL Distilled",isbn:"0-4696-7030-4"},
+  {title:"NoSQL in 7 Days",isbn: "0-4086-6859-8"},
+  {title:"NoSQL Database",isbn:"0-2504-6932-4"}]);
+{
+  acknowledged: true,
+  insertedId: ObjectId('67d9c2074528fa06b04ca58b')
+}
+db.Books.find()
+{
+  '0': {
+    title: 'NoSQL Distilled',
+    isbn: '0-4696-7030-4'
+  },
+  '1': {
+    title: 'NoSQL in 7 Days',
+    isbn: '0-4086-6859-8'
+  },
+  '2': {
+    title: 'NoSQL Database',
+    isbn: '0-2504-6932-4'
+  },
+  _id: ObjectId('67d9c2074528fa06b04ca58b')
+}
+monday
+
+
